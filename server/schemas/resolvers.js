@@ -19,6 +19,7 @@ const resolvers = {
             return user;
           },
         },
+        
         tutor: async (_, { id }, { currentUser }) => {
             if (!currentUser) {
                 throw new AuthenticationError(
@@ -34,6 +35,13 @@ const resolvers = {
             },
         };
 
+        Mutation: {
+            createUser: async (_, { email, password }) => {
+                const user = new User ({email, password});
+                await user.save();
+                return user;
+            }
+        }
 
         module.exports = resolvers;
 
