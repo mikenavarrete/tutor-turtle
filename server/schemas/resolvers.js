@@ -50,6 +50,17 @@ const resolvers = {
       const token = signToken(tutor);
       return { token, tutor };
     },
+    login: async (_, { email, password }, { currentUser }) => {
+      if (currentUser) {
+        throw new AuthenticationError('You are already logged in.');
+        }
+        const valid = await user.comparePassword(password);
+        if (!valid) {
+          throw new AuthenticationError('Invalid credentials.');
+          }
+          const token = signToken(user);
+          return { token, user };
+    },
   },
 };
 
