@@ -1,49 +1,67 @@
-const {User,Tutor}= require('../models');
-const {signToken,AuthenicationError}= require
-
-const stripe = require('stripe')
+const { User, Tutor } = require('../models');
+const { signToken, AuthenticationError } = require('../utils/auth');
+const stripe = require('stripe')('');
 
 const resolvers = {
-    Query: {
-        user: async (_, { id }, { currentUser }) => {
-            if (!currentUser) {
-              throw new AuthenticationError(
-                'You must be logged in to view this user.'
-              );
-            }
-            const user = await User.findById(id);
-            if (!user) {
-              throw new Error('No user found with that ID.');
-            }
-    
-            return user;
-          },
-        },
-        
-        tutor: async (_, { id }, { currentUser }) => {
-            if (!currentUser) {
-                throw new AuthenticationError(
-                    'You must be logged in to view this user.'
-                );
-            }
+  Query: {
+    user: async (_, { id }, { currentUser }) => {
+      if (!currentUser) {
+        throw new AuthenticationError(
+          'You must be logged in to view this user.'
+        );
+      }
+      const user = await User.findById(id);
+      if (!user) {
+        throw new Error('No user found with that ID.');
+      }
 
-            const tutor = await Tutor.findById(id);
-            if (!tutor) {
-                throw new Error('No tutor found with that ID.');
-                }
-                return tutor;
-            },
-        };
+      return user;
+    },
+    tutor: async (_, { id }, { currentUser }) => {
+      if (!currentUser) {
+        throw new AuthenticationError(
+          'You must be logged in to view this user.'
+        );
+      }
 
-        Mutation: {
-            createUser: async (_, { email, password }) => {
-                const user = new User ({email, password});
-                await user.save();
-                return user;
-            }
+      const tutor = await Tutor.findById(id);
+      if (!tutor) {
+        throw new Error('No tutor found with that ID.');
+      }
+      return tutor;
+    },
+  },
+  Mutation: {
+    createUser: async (_, { email, password }, { currentUser }) => {
+      if (currentUser) {
+        throw new AuthenticationError('You are already logged in.');
+      }
+
+      const user = await User.create({ email, password });
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    createTutor: async (_, { name, email, password, hourlyRate }, { currentUser }) => {
+      if (currentUser) {
+        throw new AuthenticationError('You are already logged in.');
+      }
+      const tutor = await Tutor.create({ name, email, password, hourlyRate });
+      const token = signToken(tutor);
+      return { token, tutor };
+    },
+    login: async (_, { email, password }, { currentUser }) => {
+      if (currentUser) {
+        throw new AuthenticationError('You are already logged in.');
         }
+        const valid = await user.comparePassword(password);
+        if (!valid) {
+          throw new AuthenticationError('Invalid credentials.');
+          }
+          const token = signToken(user);
+          return { token, user };
+    },
+  },
+};
 
-        module.exports = resolvers;
-
-
-
+module.exports = resolvers;
