@@ -1,6 +1,6 @@
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
-
+const jwtSecretKey = process.env.JWT_SECRET_KEY;
 
 
 module.exports = {
@@ -12,5 +12,16 @@ module.exports = {
     authMiddleware: function ({ req }) {
         let token = req.body.token || req.query.token || req.headers.authorization;
 
-    }
-}
+        try {
+            const decoded = jwt.verify(token, 'secret-key');
+            req.user = decoded.user;
+            } catch (err) {
+                throw new GraphQLError('Not authorized', {
+                    extensions: {
+                        code: 'UNAUTHENTICATED',
+                        },
+                    });
+                }       
+            },
+        };
+        jwt.verify(token, jwtSecretKey);
