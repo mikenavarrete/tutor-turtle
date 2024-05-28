@@ -11,6 +11,10 @@ module.exports = {
     }),
     authMiddleware: function ({ req }) {
         let token = req.body.token || req.query.token || req.headers.authorization;
+        
+        if (!jwtSecretKey || jwtSecretKey.length === 0) {
+            throw new error('JWT secret key is not set.Please set up your jwt secret key environment variable');
+        }
 
         try {
             const decoded = jwt.verify(token, 'secret-key');
