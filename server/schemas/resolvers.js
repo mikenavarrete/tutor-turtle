@@ -1,6 +1,6 @@
 const { User, Tutor } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
-const stripe = require('stripe')('');
+const stripe = require('stripe')('sk_test_51PLZKMRxqQQc7oycymyLITMHTlNWZsSft4k5O4T8kAKLqHHes9l9E6Pj3kwmplLGEAVILrCj2aRfdeUkWjQznHmu00nIAeEFtU');
 
 const resolvers = {
   Query: {
@@ -40,6 +40,14 @@ const resolvers = {
       const user = await User.create({ email, password });
       const token = signToken(user);
 
+      const customer = await stripe.customers.create({
+        email: user.email,
+        name: user.name,
+      });
+
+      user.stripeCustomerId = customer.id;
+      await user.save();
+
       return { token, user };
     },
     createTutor: async (_, { name, email, password, hourlyRate }, { currentUser }) => {
@@ -63,5 +71,47 @@ const resolvers = {
     },
   },
 };
+createPaymentMethod: async (_, {paymentMethod}, {currentUser}) => {
+  if (!currentUser) {
+    throw new AuthenticationError('You must be logged in to create a payment method.');
+  }
+  const paymentMethod = await stripe.paymentMethods.create({
+    type: 'card',
+    card: {
+      number: paymentMethod.number,
+      exp_month: paymentMethod.exp_month,
+      exp_year: paymentMethod.exp_year,
+      cvc: paymentMethod.cvc,
+      },
+  });
+
+  const customer = await stripe.customers.retrieve(currentUser.stripeCustomerId);
+  await stripe.paymentMethods.attach(paymentMethod.id, { customer: customer.id,     
+});
+currentUser.paymentMethodId = paymentMethod.id;
+await currentUser.save();
+return { paymentMethod };
+};
+
+makePayment: async (_, {amount}, {currentUser}) => {
+  if (!currentUser) {
+    throw new AuthenticationError('You must be logged in to make a payment.');
+    }
+    const customer = await stripe.customers.retrieve(currentUser.stripeCustomerId);
+    
+    const charge = await stripe.charges.create({
+      amount: amount * 100,
+      currency: 'usd',
+      customer: customer.id,
+      payment_method: currentUser.paymentMethodId,
+      off_session: false,
+      confirm:true,
+    });
+
+    currentUser.paymentStatus = 'paid';
+    await currentUser.save();
+    
+    return { charge };
+  },
 
 module.exports = resolvers;
