@@ -16,15 +16,14 @@ const tutoringSessionSchema = new mongoose.Schema({
         ref: 'Subject',
         required: true,
     },
-    startTime: {
-        type: Date,
-        required: true,
-    },
-    endTime: {
-        type: Date,
-        required: true,
-    },
-    notes: String,
+    tutors: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Tutor'
+        }
+    ]
 });
 
-module.exports = mongoose.model('TutoringSession', tutoringSessionSchema);
+const TutoringSessions = mongoose.model('TutoringSessions', tutoringSessionSchema);
+
+module.exports = TutoringSessions;

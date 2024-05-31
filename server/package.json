@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@apollo/client": "^3.10.4",
+    "@apollo/server": "^4.10.4",
     "apollo-server-express": "^3.13.0",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
@@ -21,5 +23,9 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.0",
     "stripe": "^15.8.0"
+  },
+  "devDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

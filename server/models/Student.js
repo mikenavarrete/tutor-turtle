@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 const bcrypt = require('bcryptjs');
 
 const studentSchema = new Schema ({
@@ -8,6 +8,10 @@ const studentSchema = new Schema ({
     password:{type: String, required:true},
     dateOfBirth: {type: Date, required:true},
     createdAt: {type: Date, default:Date.now},
+    tutors: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Tutor'
+    }]
 });
 
 studentSchema.pre('save',async function (next){

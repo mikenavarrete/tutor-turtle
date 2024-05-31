@@ -4,11 +4,8 @@ const subjectSchema = new mongoose.Schema({
     name:{
         type:String,
         required:true,
-        unique:true,
-    },
-    description:{
-        type:String,
-    },
+        trim:true,
+    }
 });
 
 const Subject = mongoose.model('Subject',subjectSchema);

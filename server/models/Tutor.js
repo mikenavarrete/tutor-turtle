@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const tutorSchema = new mongoose.Schema({
+const { Schema } = mongoose;
+
+const tutorSchema = new Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -34,5 +36,6 @@ const tutorSchema = new mongoose.Schema({
         ref: 'Review',
     }],
 });
+const Tutor = mongoose.model('Tutor',tutorSchema);
 
-module.exports = mongoose.model('Tutor', tutorSchema);
+module.exports = Tutor;
