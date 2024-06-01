@@ -7,13 +7,11 @@ const students = [
   { name: 'Jane Doe', email: 'janedoe@example.com', dateOfBirth: new Date(), password: 'password' },
 ];
 
-
-const subjects = await Subject.find({ name: { $in: ['Math', 'Science', 'English', 'History'] } }); // Get the subjects from the database
-const tutorSubjects = subjects.map(subject => subject._id); // Convert the subjects to an array of ObjectIds
-
-const tutors = [
-  { name: 'Mr. Smith', email: 'rsmith@example.com', subjects: tutorSubjects.filter(subjectId => ['Math', 'Science'].includes(subjects.find(subject => subject._id.equals(subjectId)).name)), user: userId },
-  { name: 'Ms. Johnson', email: 'sjohnson@example.com', subjects: tutorSubjects.filter(subjectId => ['English', 'History'].includes(subjects.find(subject => subject._id.equals(subjectId)).name)), user: userId },
+const subjects = [
+  { name: 'Math' },
+  { name: 'Science' },
+  { name: 'English' },
+  { name: 'History' },
 ];
 
 const tutoringSessions = [
@@ -22,36 +20,70 @@ const tutoringSessions = [
 ];
 
 async function seedDatabase() {
+  // Create students first
   for (const student of students) {
     const existingStudent = await Student.findOne({ email: student.email });
     if (!existingStudent) {
-      await Student.create(student);
+      const createdStudent = await Student.create(student);
+      // Assign the _id property of the created student to the user property of the tutor object
+      const tutor = tutors.find(tutor => tutor.name === 'Mr. Smith');
+      if (tutor) {
+        tutor.user = createdStudent._id;
+      }
     }
   }
-  for (const tutor of tutors) {
-    const existingTutor = await Tutor.findOne({ email: tutor.email });
-    if (!existingTutor) {
-      await Tutor.create(tutor);
-    }
-  }
+
+  // Then, create tutors with the defined user property
+  const tutors = [
+    {
+      name: 'Mr. Smith',
+      email: 'rsmith@example.com',
+      subjects: subjects.filter(subject => ['Math', 'Science'].includes(subject.name)).map(subject => subject._id),
+      user: null  // Initialize the user property with null
+    },
+    {
+      name: 'Ms. Johnson',
+      email: 'sjohnson@example.com',
+      subjects: subjects.filter(subject => ['English', 'History'].includes(subject.name)).map(subject => subject._id),
+      user: null  // Initialize the user property with null
+    },
+  ];
+
+
+  // Seed subjects
   for (const subject of subjects) {
     const existingSubject = await Subject.findOne({ name: subject.name });
     if (!existingSubject) {
       await Subject.create(subject);
     }
   }
+
+  // Seed tutors
+  for (const tutor of tutors) {
+    const existingTutor = await Tutor.findOne({ email: tutor.email });
+    if (!existingTutor) {
+      const tutorSubjects = await Subject.find({ name: { $in: tutor.subjects } });
+      const tutorSubjectIds = tutorSubjects.map(subject => subject._id);
+      await Tutor.create({...tutor, subjects: tutorSubjectIds });
+    }
+  }
+
+  // Seed tutoring sessions
   for (const session of tutoringSessions) {
     const existingSession = await TutoringSession.findOne({ tutor: session.tutor, student: session.student, subject: session.subject });
     if (!existingSession) {
-      await TutoringSession.create(session);
+      const tutor = await Tutor.findOne({ name: session.tutor });
+      const student = await Student.findOne({ name: session.student });
+      const subject = await Subject.findOne({ name: session.subject });
+      await TutoringSession.create({ tutor: tutor._id, student: student._id, subject: subject._id });
     }
   }
 }
 
 seedDatabase().then(() => {
   console.log('Database seeded successfully!');
-  db.close(); // Use the `db` variable instead of `mongoose`
+  db.close(); 
 }).catch((err) => {
   console.error('Error seeding database:', err);
-  db.close(); // Use the `db` variable instead of `mongoose`
+  db.close(); 
 });
