@@ -6,6 +6,19 @@ type Student {
     email: String!
   }
 
+  type User {
+    id: ID!
+    email: String!
+    name: String!
+  }
+
+  input LineItemInput {
+    id: ID!
+    name: String!
+    quantity: Int!
+    price: Float!
+  }
+
   type Tutor {
     id: ID!
     name: String!
@@ -37,12 +50,21 @@ type Student {
     addTutor(name: String!, email: String!, subjects: [String!]!): Tutor!
     addSubject(name: String!): Subject!
     addTutoringSession(tutorId: ID!, studentId: ID!, subject: String!): TutoringSession!
-    createCheckoutSession(line_items: [LineItem!]!): CheckoutSession!
+    createCheckoutSession(line_items: [LineItemInput!]!): CheckoutSession!
+    login(email: String!, password: String!): User!
   }
 
   type CheckoutSession {
     session: String!
   }
+
+  type LineItem {
+    id: ID!
+    name: String!
+    quantity: Int!
+    price: Float!
+  }
 `;
+
 
 module.exports = typeDefs;
