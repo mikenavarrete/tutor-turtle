@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import './index.css'
+// import './index.css'
 import App from './App.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <App />
+        element: <Home />
       },
        {
         path: '/login',
@@ -28,19 +28,13 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       }, {
-        path: '/profiles/:profileId',
+        path: '/profiles',
         element: <Profile />
       }
     ]
   },
 ]);
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <RouterProvider router={router} />
