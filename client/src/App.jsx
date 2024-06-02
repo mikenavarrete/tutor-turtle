@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { Outlet } from 'react-router-dom';
-// import './App.css';
+import './App.css';
+
 const subjects = [
   { icon: 'X', name: 'Spanish' },
   { icon: 'English', name: 'English' },
@@ -22,7 +23,7 @@ function App() {
     ? subjects.filter((subject) => subject.name.toLowerCase().includes(searchTerm.toLowerCase()))
     : subjects;
   return (
-    <div className="App">
+    <div className="app">
       <Navbar />
       <Outlet />
 
