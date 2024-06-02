@@ -32,7 +32,7 @@ function Navbar () {
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <a href="/" class="navbar-item">
         Tutor Turtle
       </a>
 
@@ -43,7 +43,10 @@ function Navbar () {
       <div class="navbar-item">
         <div class="buttons">
           <a href="/signup" class="button is-primary">
-            <strong>Sign up</strong>
+            <strong>Student Sign up</strong>
+          </a>
+          <a href="/tutorsignup" class="button is-primary">
+            <strong>Tutor Sign up</strong>
           </a>
           <a href="/login" class="button is-light">
           Log in
