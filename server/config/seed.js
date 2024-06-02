@@ -87,3 +87,5 @@ seedDatabase().then(() => {
   console.error('Error seeding database:', err);
   db.close(); 
 });
+
+module.exports = subjects;
