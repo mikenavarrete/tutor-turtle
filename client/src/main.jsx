@@ -9,6 +9,7 @@ import Login from './pages/Login.jsx';
 import Signup from './pages/Signup.jsx';
 import Profile from './pages/Profile.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
+import TutorSignUp from './pages/TutorSignUp.jsx';
 
 
 const router = createBrowserRouter([
@@ -20,8 +21,7 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />
-      },
-       {
+      }, {
         path: '/login',
         element: <Login />
       }, {
@@ -30,6 +30,9 @@ const router = createBrowserRouter([
       }, {
         path: '/profiles',
         element: <Profile />
+      }, {
+        path: '/tutorsignup',
+        element: <TutorSignUp />
       }
     ]
   },
