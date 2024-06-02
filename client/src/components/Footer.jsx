@@ -4,6 +4,10 @@ const Footer = () => {
   return (
     <footer class="footer">
     <div class="content has-text-centered">
+    <div class="is-flex
+     is-flex-direction-column
+     is-justify-content-end
+     ">
       <p>
         <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>.
         The source code is licensed
@@ -13,6 +17,7 @@ const Footer = () => {
           >CC BY NC SA 4.0</a
         >.
       </p>
+    </div>
     </div>
   </footer>
   );
