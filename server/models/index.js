@@ -1,7 +1,10 @@
-const Tutor = require('./Tutor');
 const Student = require('./Student');
+const Tutor = require('./Tutor');
+const subjects = require('./subjects');
+const TutoringSessions = require('./TutoringSessions');
 
 
 
 
-module.exports = {Tutor, Student};
+
+module.exports = {Student, Tutor, subjects, TutoringSessions};
