@@ -10,6 +10,7 @@ import Signup from './pages/Signup.jsx';
 import Profile from './pages/Profile.jsx';
 import ErrorPage from './pages/ErrorPage.jsx';
 import TutorSignUp from './pages/TutorSignUp.jsx';
+import TutorSearch from './pages/TutorSearch.jsx';
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,9 @@ const router = createBrowserRouter([
       }, {
         path: '/tutorsignup',
         element: <TutorSignUp />
+      },{
+        path: '/tutorsearch',
+        element: <TutorSearch />
       }
     ]
   },

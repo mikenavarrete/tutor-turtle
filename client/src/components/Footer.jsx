@@ -9,13 +9,12 @@ const Footer = () => {
      is-justify-content-end
      ">
       <p>
-        <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>.
-        The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
-        website content is licensed
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-          >CC BY NC SA 4.0</a
-        >.
+        <strong>Tutor Turtle</strong> by
+        <a href="http://github.com/ppeterson609"> Patrick Peterson</a>,  
+        <a href="https://github.com/mikenavarrete"> Michael Navarrete</a>, 
+        <a href="http://github.com/julz-tm"> Julian Ortiz</a>, and
+        <a href="https://github.com/JaysonNunez1"> Jayson Nunez </a>
+
       </p>
     </div>
     </div>
