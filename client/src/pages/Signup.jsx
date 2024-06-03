@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
-import '../styles/signup.css'
+import './styles/signup.css'
 
 export default function Signup() {
   return (
@@ -17,14 +17,12 @@ export default function Signup() {
 
              <input className="input  is-info is-rounded mb-5 custom-width" type="text" placeholder="e.g Alex Smith"/>
 
-             <button className="button">Button</button>
             </div>
             
             <label className="label">Email</label>
             <div className="field is-flex is-flex-direction-row is-justify-content-center">
 
           <input className="input  is-info is-rounded mb-5 custom-width" type="email" placeholder="e.g. alexsmith@gmail.com"/>
-            <button className="button">Button</button>
             </div>
 
             <label className="label is-justify-content-left">Password</label>
@@ -34,7 +32,6 @@ export default function Signup() {
             type="text"
             placeholder="Info input"
             />
-            <button className="button">Button</button>
             </div>
           
 
@@ -45,7 +42,6 @@ export default function Signup() {
             type="text"
             placeholder="Rounded input"
             />
-            <button className="button">Button</button>
             </div>
            
         </div>
