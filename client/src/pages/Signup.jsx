@@ -10,37 +10,46 @@ export default function Signup() {
                 <br></br>
         </div>
 
-            <div className="container">
-             <div class="field">
-            <label class="label">Name</label>
-              <div class="control">
-             <input class="input  is-info is-rounded mb-5" type="text" placeholder="e.g Alex Smith"/>
-             <button class="button">Button</button>
-             </div>
+     
+            <label className="label">Name</label>
+             <div className="field is-flex is-flex-direction-row is-justify-content-center">
+
+
+             <input className="input  is-info is-rounded mb-5 custom-width" type="text" placeholder="e.g Alex Smith"/>
+
+             <button className="button">Button</button>
             </div>
             
-            <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-          <input class="input  is-info is-rounded mb-5" type="email" placeholder="e.g. alexsmith@gmail.com"/>
-            </div>
+            <label className="label">Email</label>
+            <div className="field is-flex is-flex-direction-row is-justify-content-center">
+
+          <input className="input  is-info is-rounded mb-5 custom-width" type="email" placeholder="e.g. alexsmith@gmail.com"/>
+            <button className="button">Button</button>
             </div>
 
             <label className="label is-justify-content-left">Password</label>
+            <div className="field is-flex is-flex-direction-row is-justify-content-center">
             <input
-            className="input is-info is-rounded mb-5"
+            className="input is-info is-rounded mb-5 custom-width"
             type="text"
             placeholder="Info input"
             />
+            <button className="button">Button</button>
+            </div>
+          
 
             <label className="label is-justify-content-left">Confirm Password</label>
+            <div className="field is-flex is-flex-direction-row is-justify-content-center">
             <input 
-            className="input is-info is-rounded mb-5"
+            className="input is-info is-rounded mb-5 custom-width"
             type="text"
             placeholder="Rounded input"
             />
+            <button className="button">Button</button>
+            </div>
+           
         </div>
-    </div>
+
 
   );
 }
