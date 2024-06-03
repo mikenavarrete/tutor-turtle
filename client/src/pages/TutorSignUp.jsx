@@ -60,7 +60,7 @@ export default function TutorSignUp() {
 
             <label className="label is-justify-content-center">Please Enter a Bio</label>
             <div className="field is-flex flex-direction-row is-justify-content-center">
-            <textarea className="textarea is-half custom-width" placeholder="e.g. Hello world"></textarea>
+            <textarea className="column is-half" placeholder="e.g. Hello world"></textarea>
             <button className="button">Button</button>
             </div>
          
