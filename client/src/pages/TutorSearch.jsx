@@ -4,7 +4,7 @@ import '../styles/TutorSearch.css'
 
 export default function TutorSearch() {
     return (
-        <div className="column is-one-quarter is-flex is-flex-wrap-wrap is-align-items-baseline">
+        <div className="column is-one-quarter is-flex is-flex-wrap-wrap ">
         <div className="card">
         <div className="card-image">
           <figure className="image is-4by3">

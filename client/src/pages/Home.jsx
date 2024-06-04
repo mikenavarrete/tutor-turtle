@@ -3,6 +3,8 @@
 
 import React, { useState } from 'react';
 import '../styles/Home.css';
+import pic1 from '../components/images/pic1.jpg';
+import pic2 from '../components/images/pic2.jpg';
 
 const subjects = [
   { icon: 'X', name: 'Spanish' },
@@ -49,6 +51,8 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <img class="left" src={pic1} alt="Decorative right" />
+        <img class="right" src={pic2} alt="Decorative right" />
       </main>
       <footer className="footer"></footer>
     </div>

@@ -6,3 +6,14 @@
     position: relative;
     left: 200px;
 }
+
+.left {
+    height: 25%;
+    width: 25%;
+    
+}
+
+.right{
+    height: 25%;
+    width: 25%;
+}
