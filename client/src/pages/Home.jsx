@@ -51,8 +51,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <img class="left" src={pic1} alt="Decorative right" />
-        <img class="right" src={pic2} alt="Decorative right" />
+        <img className="left" src={pic1} alt="Decorative right" />
+        <img className="right" src={pic2} alt="Decorative right" />
       </main>
       <footer className="footer"></footer>
     </div>

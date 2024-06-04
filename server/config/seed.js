@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { Student, Tutor, Subject, TutoringSession } = require('../models');
+const { Student, Tutor, Subject, TutoringSessions } = require('../models');
 const cleanDB = require('./cleanDB');
 
 const students = [
@@ -19,35 +19,40 @@ const tutoringSessions = [
   { tutor: 'Ms. Johnson', student: 'Jane Doe', subject: 'English' },
 ];
 
-async function seedDatabase() {
-  // Create students first
-  for (const student of students) {
-    const existingStudent = await Student.findOne({ email: student.email });
-    if (!existingStudent) {
-      const createdStudent = await Student.create(student);
-      // Assign the _id property of the created student to the user property of the tutor object
-      const tutor = tutors.find(tutor => tutor.name === 'Mr. Smith');
-      if (tutor) {
-        tutor.user = createdStudent._id;
-      }
-    }
-  }
-
   // Then, create tutors with the defined user property
-  const tutors = [
+  let tutors = [
     {
       name: 'Mr. Smith',
       email: 'rsmith@example.com',
-      subjects: subjects.filter(subject => ['Math', 'Science'].includes(subject.name)).map(subject => subject._id),
-      user: null  // Initialize the user property with null
+      subjects: ['665e64839743a3a1e6a27ff9', '665e64839743a3a1e6a27ffc'],
+      user: '665e632a0414ec72f656b77e'
     },
     {
       name: 'Ms. Johnson',
       email: 'sjohnson@example.com',
-      subjects: subjects.filter(subject => ['English', 'History'].includes(subject.name)).map(subject => subject._id),
-      user: null  // Initialize the user property with null
+      subjects: ['665e64839743a3a1e6a27ffc', '665e64839743a3a1e6a27ff6'],
+      user: '665e632a0414ec72f656b77e'
     },
   ];
+
+
+async function seedDatabase() {
+  // Create students first
+  
+  for (const student of students) {
+    const existingStudent = await Student.findOne({ email: student.email });
+    if (!existingStudent) {
+      const createdStudent = await Student.create(student);
+
+      // Assign the _id property of the created student to the user property of the tutor object
+    const updatedTutors = tutors.map(tutor =>    tutor.user = createdStudent._id);
+
+      // if (tutor) {
+      //   tutor.user = createdStudent._id;
+      // }
+    }
+  }
+
 
 
   // Seed subjects
@@ -60,23 +65,28 @@ async function seedDatabase() {
 
   // Seed tutors
   for (const tutor of tutors) {
-    const existingTutor = await Tutor.findOne({ email: tutor.email });
-    if (!existingTutor) {
-      const tutorSubjects = await Subject.find({ name: { $in: tutor.subjects } });
-      const tutorSubjectIds = tutorSubjects.map(subject => subject._id);
-      await Tutor.create({...tutor, subjects: tutorSubjectIds });
-    }
+    console.log(tutor)
+    // const existingTutor = await Tutor.findOne({ email: tutor.email });
+    // if (!existingTutor) {
+      // const tutorSubjects = await Subject.find({ name: { $in: tutor.subjects } });
+      // const tutorSubjectIds = tutorSubjects.map(subject => subject._id);
+      await Tutor.create(tutor);
+    // }
   }
 
   // Seed tutoring sessions
   for (const session of tutoringSessions) {
-    const existingSession = await TutoringSession.findOne({ tutor: session.tutor, student: session.student, subject: session.subject });
-    if (!existingSession) {
+    // console.log(session)
+    // const existingSession = await TutoringSessions.findOne({ tutor: session.tutor, student: session.student });
+    // if (!existingSession) {
       const tutor = await Tutor.findOne({ name: session.tutor });
+      console.log(tutor)
       const student = await Student.findOne({ name: session.student });
+      console.log(student)
       const subject = await Subject.findOne({ name: session.subject });
-      await TutoringSession.create({ tutor: tutor._id, student: student._id, subject: subject._id });
-    }
+      console.log(subject)
+      await TutoringSessions.create({ tutor: tutor._id, student: student._id, subject: subject._id });
+    // }
   }
 }
 

@@ -3,9 +3,9 @@ import '../styles/Footer.css'
 
 const Footer = () => {
   return (
-    <footer class="footer">
-    <div class="content has-text-centered">
-    <div class="is-flex
+    <footer className="footer">
+    <div className="content has-text-centered">
+    <div className="is-flex
      is-flex-direction-column
      is-justify-content-end
      ">
