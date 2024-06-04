@@ -6,12 +6,12 @@ import React from 'react';
 function Navbar () {
   return (
     
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+  <div className="navbar-brand">
   
    
 
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
@@ -19,25 +19,25 @@ function Navbar () {
     </a>
   </div>
 
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a href="/" class="navbar-item" id="logo-text">
+  <div id="navbarBasicExample" className="navbar-menu">
+    <div className="navbar-start">
+      <a href="/" className="navbar-item" id="logo-text">
         Tutor Turtle
       </a>
 
 
     </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a href="/signup" class="button is-primary">
+    <div className="navbar-end">
+      <div className="navbar-item">
+        <div className="buttons">
+          <a href="/signup" className="button is-primary">
             <strong>Student Sign up</strong>
           </a>
-          <a href="/tutorsignup" class="button is-primary">
+          <a href="/tutorsignup" className="button is-primary">
             <strong>Tutor Sign up</strong>
           </a>
-          <a href="/login" class="button is-light">
+          <a href="/login" className="button is-light">
           Log in
           </a>
         </div>

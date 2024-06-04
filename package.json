@@ -30,15 +30,15 @@
 
     "license": "ISC",
 
-    "devDependencies": {
-
-        "concurrently": "^5.1.0"
-
-    },
-
     "dependencies": {
 
         "vite": "^5.2.12"
+
+    },
+
+    "devDependencies": {
+
+        "concurrently": "^8.2.2"
 
     }
 

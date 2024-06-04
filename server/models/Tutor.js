@@ -3,9 +3,17 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const tutorSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
+        ref: 'Student',
         required: true,
     },
     bio: {

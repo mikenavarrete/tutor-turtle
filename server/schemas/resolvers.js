@@ -11,10 +11,10 @@ const resolvers = {
       return subjects.find({});
     },
     tutors: async () => {
-      return Tutor.find({});
+      return Tutor.find({}).populate('subjects');
     },
     tutoringSessions: async () => {
-      return TutoringSessions.find({});
+      return TutoringSessions.find({}).populate('student').populate('subject').populate('tutor').exec();
     },
   },
   Mutation: {
