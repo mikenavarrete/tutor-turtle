@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.css';
-import './styles/signup.css'
+import '../styles/signup.css'
 
 export default function Signup() {
   return (
@@ -43,6 +43,7 @@ export default function Signup() {
             placeholder="Rounded input"
             />
             </div>
+            <button className="button">Submit</button>
            
         </div>
 

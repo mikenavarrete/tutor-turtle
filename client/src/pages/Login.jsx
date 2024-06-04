@@ -12,7 +12,7 @@ export default function Login() {
               type="text"
               placeholder="Rounded input"
               />
-              <button class="button">Button</button>
+         
               </div>
 
               <label className="label is-justify-content-left">Confirm Password</label>
@@ -22,8 +22,9 @@ export default function Login() {
               type="text"
               placeholder="Rounded input"
               />
-              <button class="button">Button</button>
+         
               </div>
+              <button className="button">Login</button>
       </div>
 
 
