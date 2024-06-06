@@ -10,10 +10,15 @@
 .left {
     height: 25%;
     width: 25%;
+    display: flex;
+    justify-self: flex-start;
+
     
 }
 
 .right{
     height: 25%;
     width: 25%;
+    display: flex;
+    justify-self: flex-end;
 }
