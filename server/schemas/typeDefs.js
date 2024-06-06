@@ -4,13 +4,23 @@ type Student {
     id: ID!
     name: String!
     email: String!
+    password: String!
+  
+
   }
 
-  type User {
-    id: ID!
-    email: String!
-    name: String!
-  }
+type AuthStudent {
+  token: ID!
+  student: Student!
+  
+}
+
+type AuthTutor {
+  token: ID!
+  tutor: Tutor!
+
+}
+
 
   input LineItemInput {
     id: ID!
@@ -24,6 +34,7 @@ type Student {
     name: String!
     email: String!
     subjects: [Subject!]!
+    password: String!
   }
 
   type Subject {
@@ -46,12 +57,13 @@ type Student {
   }
 
   type Mutation {
-    addStudent(name: String!, email: String!): Student!
-    addTutor(name: String!, email: String!, subjects: [String!]!): Tutor!
+    addStudent(name: String!, email: String!, password: String!): Student!
+    addTutor(name: String!, email: String!, subjects: [String!]!, password: String!): Tutor!
     addSubject(name: String!): Subject!
-    addTutoringSession(tutorId: ID!, studentId: ID!, subject: String!): TutoringSession!
+    addTutoringSession(tutorId: ID!, studentId: ID!, subject: ID!): TutoringSession!
     createCheckoutSession(line_items: [LineItemInput!]!): CheckoutSession!
-    login(email: String!, password: String!): User!
+    loginTutor(email: String!, password: String!): AuthTutor!
+    loginStudent(email: String!, password: String!): AuthStudent!
   }
 
   type CheckoutSession {

@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
+
 
 const { Schema } = mongoose;
 
@@ -11,11 +13,11 @@ const tutorSchema = new Schema({
         type: String,
         required: true
     },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Student',
-        required: true,
+    password: {
+        type: String, 
+        required: true
     },
+    
     bio: {
         type: String,
     },
@@ -44,6 +46,20 @@ const tutorSchema = new Schema({
         ref: 'Review',
     }],
 });
+
+tutorSchema.pre('save',async function (next){
+    if (!this.isNew || this.isModified('password')) {
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
+    }
+
+    next();
+});
+
+tutorSchema.methods.iscomparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+};
+
 const Tutor = mongoose.model('Tutor',tutorSchema);
 
 module.exports = Tutor;
