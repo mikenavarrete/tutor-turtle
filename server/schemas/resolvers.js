@@ -15,7 +15,7 @@ const resolvers = {
     },
     tutoringSessions: async () => {
       return TutoringSessions.find({}).populate('student').populate('subject').populate('tutor').exec();
-    },
+    },  
   },
   Mutation: {
     addStudent: async (parent, { name, email, password}) => {
