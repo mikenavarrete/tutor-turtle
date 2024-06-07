@@ -12,6 +12,7 @@ import computerStudying from '../components/images/computer-studying2.jpg';
 import testimonial1 from '../components/images/testimonial1.jpg';
 import testimonial2 from '../components/images/testimonial2.jpg';
 import testimonial3 from '../components/images/testimonial3.jpg';
+import Logo from '../components/images/Logo.png';
 
 
 const subjects = [
@@ -36,29 +37,24 @@ export default function Home() {
     <div className="Home">
     
       <main className="main">
-        <h2>"Unlock Your Learning Shell with Tutor Turtle!"</h2>
+        <h2 className="title">"Unlock Your Learning Shell with Tutor Turtle!"</h2>
         <br></br> 
+        <h3 className="search-text">"Pick a Subject!"</h3>
+     
         <div className="search-bar">
-          <input type="text" value={searchTerm} onChange={handleSearch} placeholder="What would you like to learn?" />
-          <button type="button">Search</button>
+          <input className="search" type="text" value={searchTerm} onChange={handleSearch} placeholder="What would you like to learn?" />
+          <button type="button" className='button'>Search</button>
         </div>
-        {/* <div className="subjects-container">
-          {filteredSubjects.map((subject) => (
-            <div key={subject.name} className="subject">
-              <div className="icon">{subject.icon}</div>
-              <span>{subject.name}</span>
-            </div>
-          ))}
-        </div> */}
+    
         <br></br><br></br>
-        <div className="tutors-section">
-          <h3>50 million evaluated private tutors ★★★★★</h3>
-          <div className="tutors-grid">
-            <div className="tutor-card">
-              <button className="heart-button">:heart:</button>
-            </div>
-          </div>
-        </div>
+        <div className='logoContainer'>
+        <img
+        className='logo'
+        src={Logo}
+        alt="Placeholder image"
+        style={{ objectFit: 'cover' }}
+      />
+      </div>
       <div className= "picsLeft">
         
         <img className="left" src={pic1} alt="Decorative right" />
@@ -72,10 +68,9 @@ export default function Home() {
       </div>
       
       <div className='columns is-flex is-justify-content-center is-centered'>
-      <div className='column is-one-fifth'>
-        <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
+      <div className='testimonial column is-one-fifth'>
+  <div className="card-image">
+    <figure className="image is-4by3">
       <img
         src={testimonial1}
         alt="Placeholder image"
@@ -83,23 +78,22 @@ export default function Home() {
       />
     </figure>
   </div>
-  <div class="card-content">
+ 
     
 
-    <div class="content">
+    <div className="TestimonalText content">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-      iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-      <a href="#">#responsive</a>
+      iacu
       <br />
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
+
+  
+
 </div>
         </div>  
-      <div className='column is-one-fifth '>
-        <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
+      <div className='testimonial column is-one-fifth '>
+
+  <div className="card-image">
+    <figure className=" image is-4by3">
       <img
         src={testimonial2}
         alt="Placeholder image"
@@ -107,23 +101,18 @@ export default function Home() {
       />
     </figure>
   </div>
-  <div class="card-content">
-    
-
-    <div class="content">
+    <div className="TestimonalText content">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-      iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-      <a href="#">#responsive</a>
+      iacu
       <br />
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
+
+
 </div>
         </div>  
-      <div className='column is-one-fifth'>
-        <div class="card">
-  <div class="card-image">
-    <figure class="image is-4by3">
+      <div className='testimonial column is-one-fifth'>
+   
+  <div className="card-image">
+    <figure className="image is-4by3">
       <img
         src={testimonial3}
         alt="Placeholder image"
@@ -131,17 +120,16 @@ export default function Home() {
       />
     </figure>
   </div>
-  <div class="card-content">
+ 
     
 
-    <div class="content">
+    <div className="TestimonalText content">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec
-      iaculis mauris. <a>@bulmaio</a>. <a href="#">#css</a>
-      <a href="#">#responsive</a>
+      iacu
       <br />
-      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-    </div>
-  </div>
+
+
+
 </div>
         </div>  
   
