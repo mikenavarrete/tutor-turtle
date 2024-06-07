@@ -54,6 +54,7 @@ type AuthTutor {
     subjects: [Subject!]!
     tutors: [Tutor!]!
     tutoringSessions: [TutoringSession!]!
+    tutorsBySubject(subject: String!): [Tutor!]!
   }
 
   type Mutation {
