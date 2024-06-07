@@ -15,3 +15,7 @@ Tutor Turtle is an online platform that connects students with private tutors. I
 
 ## Usage 
 Students can create a profile account with an email and password and once signed in they can search for any subject they need tutoring for. Once users hit the search button they will be prompt to a different page where they will have the results for different tutors for that particular subject they looked up in the search box. Students can connect with tutors and book a free assessment session as well.
+
+## DeployedApp
+
+https://tutor-turtle-4bf2f0f958eb.herokuapp.com/
