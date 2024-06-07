@@ -24,5 +24,11 @@ body {
   text-align: center;
 }
 #root {
-  background-color: rgb(29, 210, 83);
+  
+  background: linear-gradient(to bottom, #6be2b8, rgb(255, 255, 255), #6be2b8);
+  
+}
+
+.testimonialText{
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
