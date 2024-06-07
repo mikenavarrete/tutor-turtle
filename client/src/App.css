@@ -24,8 +24,7 @@ body {
   text-align: center;
 }
 #root {
-  
-  background: linear-gradient(to bottom, #6be2b8, rgb(255, 255, 255), #6be2b8);
+  background-color: #6be2b8;
   
 }
 
